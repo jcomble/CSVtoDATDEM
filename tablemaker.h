@@ -33,6 +33,9 @@ class TableMaker {
 		TableMaker();
 		~TableMaker();
 		TableMaker(string content);
+		void nodes_display();
+		void traffics_display();
+		void connections_display();
 		Node parse2(vector<string> vect);
 		int build_tables();
 		vector<Node> get_nodes();

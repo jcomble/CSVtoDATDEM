@@ -7,15 +7,15 @@
 
 #include "Connection.h"
 
-Connection::Connection(int num_1, int num_2) {
-	node_debut = num_1;
-	node_fin = num_2;
+Connection::Connection(Node node_1, Node node_2) {
+	node_debut = node_1;
+	node_fin = node_2;
 }
 
-int Connection::get_node_debut() {
+Node Connection::get_node_debut() {
 	return this->node_debut;
 }
 
-int Connection::get_node_fin() {
-	return this->node_debut;
+Node Connection::get_node_fin() {
+	return this->node_fin;
 }

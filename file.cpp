@@ -34,7 +34,6 @@ void File::read_content(const char *filename) {
 			this->content.append(line + "\n");
 			vector<string> vect = get_vector(line);
 			short type = check_vect(vect);
-			cout << line << endl;
 			if (type == 7) {
 				;
 			} else if (count == 0 && type == 1) {
@@ -153,5 +152,9 @@ vector<string> File::get_vector(const string chaine) {
 }
 
 bool File::check_valid() {
-	return this->content == "";
+	return this->content != "";
+}
+
+void File::display() {
+	cout << "File(\"" << this->content << "\")" << endl;
 }

@@ -1,11 +1,17 @@
 #include <vector>
+#include "node.h"
+
+#ifndef TRAFFIC_H_
+#define TRAFFIC_H_
+
 using namespace std;
 class Traffic
 {
-    
     private:
-        vector<int> list_traffic;
+        vector<Node> list_traffic;
     public:
         Traffic(vector<Node> vector_nodes);
-        vector<int> get_traffic();
+        vector<Node> get_traffic();
 };
+
+#endif

@@ -19,7 +19,11 @@ int main(int argc,char * argv[]){
 			cout << filename <<" is not opened"<< endl;
 			return 2;
 		}
+		file.display();
 		TableMaker tables = TableMaker(file.get_content());
+		tables.nodes_display();
+		tables.traffics_display();
+		tables.connection_display();
 		vector<Node> vector_nodes = tables.get_nodes();
 		vector<Connection> vector_connections = tables.get_connections();
 		vector<Traffic> vector_traffics = tables.get_traffics();

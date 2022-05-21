@@ -19,6 +19,7 @@ using namespace std;
 
 TableMaker::TableMaker(string content) {
 	set_content(content);
+	build_tables();
 }
 
 TableMaker::~TableMaker() {
@@ -88,29 +89,41 @@ int TableMaker::build_tables() {
 			tmp_vector_nodes.push_back(tmp_node);
 			vector_numero.push_back(tmp_numero);
 		} else if (type == 4 && (count == 2 || (count == 3 && vect.size() == 2))) {
+			vector<Node> tmp_list_node_traffic;
+			vector<Node> tmp_list_node_connection;
 			for (const string elem : vect) {
 				int length = elem.length();
 				int tmp_numero = atoi(elem.substr(5, length - 6).c_str());
 				check = false;
-				for (int tmp_int : vector_numero) {
-					if (tmp_numero == tmp_int) {
+				for (Node tmp_node : tmp_vector_nodes) {
+					if (tmp_numero == tmp_node.get_id()) {
 						check = true;
+						if (count == 2) {
+							tmp_list_node_traffic.push_back(tmp_node);
+						} else {
+							tmp_list_node_connection.push_back(tmp_node);
+						}
 						break;
 					}
 				}
 				if (!check) {
 					break;
 				}
-				if (count == 2) {
-					// ajouter Traffic
-				} else {
-					// ajouter Connection
-				}
+			}
+			if (count == 2) {
+				Traffic tmp_traffic = Traffic(tmp_list_node_traffic);
+				tmp_vector_traffics.push_back(tmp_traffic);
+			} else {
+				Connection tmp_connection = Connection(tmp_list_node_connection.at(0), tmp_list_node_connection.at(1));
+				tmp_vector_connections.push_back(tmp_connection);
 			}
 		} else {
 			check = false;
 		}
 		if (!check) {
+			this->vector_nodes.clear();
+			this->vector_traffics.clear();
+			this->vector_connections.clear();
 			break;
 		}
 	}
@@ -228,4 +241,58 @@ void TableMaker::write_type_4(Node nodeArray [], vector<string> vect, ofstream *
 	Node snode = nodeArray[stoi(s)];
 	cout << "Connection : " << fnode.get_id() << endl;
 	*out_dat_file << endl << fnode.get_X() << "  " << fnode.get_Y() << endl << snode.get_X() << "  " << snode.get_Y() << endl;
+}
+
+void TableMaker::nodes_display() {
+	string result_display = "[";
+	int length = this->vector_nodes.size();
+	for (int iterator = 0; iterator < length; iterator++) {
+		Node tmp_node = this->vector_nodes.at(iterator);
+		result_display.append("(\"Node" + to_string(tmp_node.get_id()) + "\", " + to_string(tmp_node.get_X()) + ", " + to_string(tmp_node.get_Y()) + ")");
+		if (iterator != length - 1) {
+			result_display.append(",\n");
+		}
+	}
+	result_display.append("]");
+	cout << result_display << endl;
+}
+
+void TableMaker::traffics_display() {
+	string result_display = "[";
+	int length_traffics = this->vector_traffics.size();
+	for (int iterator = 0; iterator < length_traffics; iterator++) {
+		result_display.append("(");
+		Traffic tmp_traffic = this->vector_traffics.at(iterator);
+		vector<Node> tmp_nodes = tmp_traffic.get_traffic();
+		int length_nodes = tmp_nodes.size();
+		for (int iterator2 = 0; iterator2 < length_nodes; iterator2++){
+			Node tmp_node = tmp_nodes.at(iterator2);
+			result_display.append("\"Node" + to_string(tmp_node.get_id()) + "\"");
+			if (iterator2 != length_nodes - 1) {
+				result_display.append("->");
+			}
+		}
+		result_display.append(")");
+		if (iterator != length_traffics - 1) {
+			result_display.append(",\n");
+		}
+	}
+	result_display.append("]");
+	cout << result_display << endl;
+}
+
+void TableMaker::connections_display() {
+	string result_display = "[";
+		int length_connections = this->vector_connections.size();
+		for (int iterator = 0; iterator < length_connections; iterator++) {
+			Connection tmp_connections = this->vector_connections.at(iterator);
+			Node node1 = tmp_connections.get_node_debut();
+			Node node2 = tmp_connections.get_node_fin();
+			result_display.append("(\"Node" + to_string(node1.get_id()) + "\"--\"Node" + to_string(node2.get_id()) + "\")");
+			if (iterator != length_connections - 1) {
+				result_display.append(",\n");
+			}
+		}
+		result_display.append("]");
+		cout << result_display << endl;
 }
