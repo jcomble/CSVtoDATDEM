@@ -8,8 +8,8 @@
 #include "Connection.h"
 
 Connection::Connection(Node node_1, Node node_2) {
-	node_debut = node_1;
-	node_fin = node_2;
+	this->node_debut = node_1;
+	this->node_fin = node_2;
 }
 
 Node Connection::get_node_debut() {

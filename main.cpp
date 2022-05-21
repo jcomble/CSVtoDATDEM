@@ -23,7 +23,7 @@ int main(int argc,char * argv[]){
 		TableMaker tables = TableMaker(file.get_content());
 		tables.nodes_display();
 		tables.traffics_display();
-		tables.connection_display();
+		tables.connections_display();
 		vector<Node> vector_nodes = tables.get_nodes();
 		vector<Connection> vector_connections = tables.get_connections();
 		vector<Traffic> vector_traffics = tables.get_traffics();

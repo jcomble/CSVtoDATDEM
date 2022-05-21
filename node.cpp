@@ -8,25 +8,25 @@
 #include "node.h"
 
 Node::Node(int id, int x, int y) {
-    node_id = id;
-    node_x = x;
-    node_y = y;
+    this->node_id = id;
+    this->node_x = x;
+    this->node_y = y;
 }
 
 Node::Node() {
-    node_id = 0;
-    node_x = 0;
-    node_y = 0;
+    this->node_id = 0;
+    this->node_x = 0;
+    this->node_y = 0;
 }
 
 int Node::get_X() {
-    return node_x;
+    return this->node_x;
 }
 
 int Node::get_Y() {
-    return node_y;
+    return this->node_y;
 }
 
 int Node::get_id() {
-    return node_id;
+    return this->node_id;
 }
