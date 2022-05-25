@@ -10,14 +10,12 @@
 
 using namespace std;
 
-int main(int argc,char * argv[]){
-	// opening input files
+int main(int argc, char * argv[]) {
 	if (argc > 1) {
-		
 		const char *filename = argv[1];
 		File file = File(filename);
 		if (!file.check_valid()) {
-			cout << filename <<" is not opened"<< endl;
+			cout << filename << " is not opened" << endl;
 			return 2;
 		}
 		file.display();
@@ -28,13 +26,8 @@ int main(int argc,char * argv[]){
 		vector<Node> vector_nodes = tables.get_nodes();
 		vector<Connection> vector_connections = tables.get_connections();
 		vector<Traffic> vector_traffics = tables.get_traffics();
-
-
 		view view_nodes = view(tables);
 		view_nodes.build();
-
-
-		
 		return 0;
 	}
 	cout << "No file in args, (main arg1.csv)";

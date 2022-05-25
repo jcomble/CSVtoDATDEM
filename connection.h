@@ -12,9 +12,10 @@ class Connection {
 	private:
 		Node node_debut, node_fin;
 	public:
-		Connection(Node id_debut, Node id_fin);
-		Node get_node_debut();
-		Node get_node_fin();
+		Connection();
+		Connection(const Node id_debut, const Node id_fin);
+		const Node get_node_debut() const;
+		const Node get_node_fin() const;
 };
 
 #endif /* CONNECTION_H_ */

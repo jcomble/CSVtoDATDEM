@@ -10,18 +10,16 @@
 #include <fstream>
 #include <vector>
 #include <iostream>
+#include "FileChecker.h"
 
 using namespace std;
-class File {
+class File : public FileChecker {
 private:
 	string content;
-	vector<std::string> get_vector(const string chaine);
-	bool isNumber(string chaine);
-	bool is_named_node(string chaine);
-	short check_vect(vector<string> vect);
 	void read_content(const char *filename);
 public:
 	File(const char *filename);
+	File();
 	virtual ~File();
 	bool check_valid() const;
 	void display() const;

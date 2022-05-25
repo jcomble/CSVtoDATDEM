@@ -1,12 +1,12 @@
 set title 'Node'
-set label "Node 0"  at 37.5,33.5
-set label "Node 1"  at 27.5,25.5
-set label "Node 2"  at 14.5,20.5
-set label "Node 3"  at 36.5,16.5
-set label "Node 4"  at 34.5,4.5
-set label "Node 5"  at 28.5,11.5
-set label "Node 6"  at 19.5,6.5
-set label "Node 7"  at 25.5,22.5
-set label "Node 8"  at 32.5,14.5
+set label "Node1"  at 37.5,33.5
+set label "Node2"  at 27.5,25.5
+set label "Node3"  at 17.5,25.5
+set label "Node4"  at 36.5,16.5
+set label "Node5"  at 34.5,4.5
+set label "Node6"  at 28.5,11.5
+set label "Node7"  at 19.5,6.5
+set label "Node8"  at 25.5,22.5
+set label "Node9"  at 32.5,14.5
 plot "output_nodes.dat"
 pause -1 " (-> return)"
