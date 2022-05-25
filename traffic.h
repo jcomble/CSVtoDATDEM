@@ -11,7 +11,7 @@ class Traffic
         vector<Node> list_traffic;
     public:
         Traffic(vector<Node> vector_nodes);
-        vector<Node> get_traffic() const;
+        vector<Node> get_traffic();
 };
 
 #endif

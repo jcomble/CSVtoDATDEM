@@ -7,15 +7,15 @@
 
 #include "connection.h"
 
-Connection::Connection(const Node node_1, const Node node_2) {
+Connection::Connection(Node node_1, Node node_2) {
 	this->node_debut = node_1;
 	this->node_fin = node_2;
 }
 
-Node Connection::get_node_debut() const {
+Node Connection::get_node_debut() {
 	return this->node_debut;
 }
 
-Node Connection::get_node_fin() const {
+Node Connection::get_node_fin() {
 	return this->node_fin;
 }
