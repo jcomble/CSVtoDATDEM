@@ -6,13 +6,14 @@
 #include "node.h"
 #include "file.h"
 #include "tablemaker.h"
+#include "view.hpp"
 
 using namespace std;
 
 int main(int argc,char * argv[]){
 	// opening input files
 	if (argc > 1) {
-		ifstream in_file;
+		
 		const char *filename = argv[1];
 		File file = File(filename);
 		if (!file.check_valid()) {
@@ -27,6 +28,13 @@ int main(int argc,char * argv[]){
 		vector<Node> vector_nodes = tables.get_nodes();
 		vector<Connection> vector_connections = tables.get_connections();
 		vector<Traffic> vector_traffics = tables.get_traffics();
+
+
+		view view_nodes = view(tables);
+		view_nodes.build();
+
+
+		
 		return 0;
 	}
 	cout << "No file in args, (main arg1.csv)";

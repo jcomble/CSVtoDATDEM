@@ -29,7 +29,9 @@ void File::read_content(const char *filename) {
 		bool check = true;
 		int count = 0;
 		vector<int> vector_numero;
+		int count_error_number_line = 0;
 		while (!in_file.eof()) {
+			count_error_number_line += 1;
 			getline(in_file, line);
 			this->content.append(line + "\n");
 			vector<string> vect = get_vector(line);
@@ -48,12 +50,13 @@ void File::read_content(const char *filename) {
 				int tmp_numero = atoi(tmp_string_numero.substr(5, length - 6).c_str());
 				for (int elem : vector_numero) {
 					if (elem == tmp_numero) {
+						cout << "Noeud " << tmp_numero << " non défini!" << endl;
 						check = false;
 						break;
 					}
 				}
 				vector_numero.push_back(tmp_numero);
-			} else if (type == 4 && (count == 2 || (count == 3 && vect.size() == 2))) {
+			} else if (type == 4 && ((count == 2 && vect.size() >= 2) || (count == 3 && vect.size() == 2))) {
 				for (const string elem : vect) {
 					int length = elem.length();
 					int tmp_numero = atoi(elem.substr(5, length - 6).c_str());
@@ -65,10 +68,12 @@ void File::read_content(const char *filename) {
 						}
 					}
 					if (!check) {
+						cout << "Noeud " << tmp_numero << " non défini!" << endl;
 						break;
 					}
 				}
 			} else {
+				cout << "Erreur ligne " << count_error_number_line << "!" << endl;
 				check = false;
 			}
 			if (!check) {
@@ -82,7 +87,7 @@ void File::read_content(const char *filename) {
 	in_file.close();
 }
 
-string File::get_content(){
+string File::get_content() const {
 	return this->content;
 }
 
@@ -151,10 +156,10 @@ vector<string> File::get_vector(const string chaine) {
 	return vect;
 }
 
-bool File::check_valid() {
+bool File::check_valid() const {
 	return this->content != "";
 }
 
-void File::display() {
+void File::display() const {
 	cout << "File(\"" << this->content << "\")" << endl;
 }

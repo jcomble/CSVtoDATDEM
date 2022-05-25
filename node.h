@@ -14,8 +14,8 @@ class Node {
     public:
         Node(int id, int x, int y);
         Node();
-        int get_X();
-        int get_Y();
-        int get_id();
+        int get_X() const;
+        int get_Y() const;
+        int get_id() const;
 };
 #endif /* NODE_H_ */

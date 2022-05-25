@@ -23,9 +23,9 @@ private:
 public:
 	File(const char *filename);
 	virtual ~File();
-	bool check_valid();
-	void display();
-	string get_content();
+	bool check_valid() const;
+	void display() const;
+	string get_content() const;
 };
 
 #endif /* FILE_H_ */

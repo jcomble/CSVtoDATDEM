@@ -1,7 +1,7 @@
 "Node",,
+Faute
 "Node1",38,34
 "Node2",28,26
-"Node3",15,21
 "Node4",37,17
 "Node5",35,5
 "Node6",29,12
@@ -9,7 +9,6 @@
 "Node8",26,23
 "Node9",33,15
 "traffic",,
-"Node8","Node1","Node3","Node7","Node6"
 "Node9","Node1","Node4"
 "Node6","Node1","Node7","Node8","Node9"
 "Node1","Node6","Node3"

@@ -22,9 +22,13 @@ TableMaker::TableMaker(string content) {
 	build_tables();
 }
 
-TableMaker::~TableMaker() {
+TableMaker::TableMaker() {
 	this->content = "";
-}
+};
+TableMaker::~TableMaker(){};
+
+
+
 
 void TableMaker::set_content(string content) {
 	this->content = content;
@@ -144,15 +148,15 @@ Node TableMaker::parse2(vector<string> vect) {
 	return node;
 }
 
-vector<Node> TableMaker::get_nodes() {
+vector<Node> TableMaker::get_nodes() const {
 	return this->vector_nodes;
 }
 
-vector<Traffic> TableMaker::get_traffics() {
+vector<Traffic> TableMaker::get_traffics() const {
 	return this->vector_traffics;
 }
 
-vector<Connection> TableMaker::get_connections() {
+vector<Connection> TableMaker::get_connections() const {
 	return this->vector_connections;
 }
 
@@ -215,35 +219,7 @@ bool TableMaker::is_named_node(string chaine) {
 	return true;
 }
 
-/**
- * Returns the vector of node ids.
- */
-vector<int> TableMaker::parse4(vector<string> vect) {
-	vector<int> vect_id;
-	for (string element : vect) {
-		int num_node = atoi(element.substr(5, element.length() - 6).c_str());
-		vect_id.push_back(num_node);
-	}
-	return vect_id;
-}
-
-void TableMaker::write_type_2(Node nodeArray [], vector<string> vect, ofstream *out_dat_file, ofstream *out_dem_file) {
-	Node node = parse2(vect);
-	nodeArray[node.get_id()] = node;
-	*out_dat_file << node.get_X() << "  " << node.get_Y() << endl;
-	*out_dem_file << "set label \"Node" << node.get_id() << "\"  at " << node.get_X() << "," << node.get_Y() << endl;
-}
-
-void TableMaker::write_type_4(Node nodeArray [], vector<string> vect, ofstream *out_dat_file, ofstream *out_dem_file) {
-	string f = vect.at(0).substr(5, 1);
-	string s = vect.at(1).substr(5, 1);
-	Node fnode = nodeArray[stoi(f)];
-	Node snode = nodeArray[stoi(s)];
-	cout << "Connection : " << fnode.get_id() << endl;
-	*out_dat_file << endl << fnode.get_X() << "  " << fnode.get_Y() << endl << snode.get_X() << "  " << snode.get_Y() << endl;
-}
-
-void TableMaker::nodes_display() {
+void TableMaker::nodes_display() const {
 	string result_display = "[";
 	int length = this->vector_nodes.size();
 	for (int iterator = 0; iterator < length; iterator++) {
@@ -257,7 +233,7 @@ void TableMaker::nodes_display() {
 	cout << result_display << endl;
 }
 
-void TableMaker::traffics_display() {
+void TableMaker::traffics_display() const {
 	string result_display = "[";
 	int length_traffics = this->vector_traffics.size();
 	for (int iterator = 0; iterator < length_traffics; iterator++) {
@@ -281,7 +257,7 @@ void TableMaker::traffics_display() {
 	cout << result_display << endl;
 }
 
-void TableMaker::connections_display() {
+void TableMaker::connections_display() const {
 	string result_display = "[";
 		int length_connections = this->vector_connections.size();
 		for (int iterator = 0; iterator < length_connections; iterator++) {

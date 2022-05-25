@@ -19,14 +19,14 @@ Node::Node() {
     this->node_y = 0;
 }
 
-int Node::get_X() {
+int Node::get_X() const {
     return this->node_x;
 }
 
-int Node::get_Y() {
+int Node::get_Y() const {
     return this->node_y;
 }
 
-int Node::get_id() {
+int Node::get_id() const {
     return this->node_id;
 }
