@@ -13,7 +13,9 @@ public:
 	virtual ~view();
     void build();
     TableMaker get_TableMaker();
-	
+    void write_ranges(std::vector<Node> vector_nodes,
+    		std::ofstream &out_dat_file,
+			std::ofstream &out_dem_file);
 };
 
 #endif /* FILE_H_ */

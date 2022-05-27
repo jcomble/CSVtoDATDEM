@@ -6,12 +6,6 @@
  */
 
 #include "file.h"
-#include <fstream>
-#include <iostream>
-#include <vector>
-#include "node.h"
-#include <string_view>
-#include <string.h>
 
 File::File(const char *filename) {
 	read_content(filename);

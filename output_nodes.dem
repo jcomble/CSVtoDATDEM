@@ -1,12 +1,14 @@
-set title 'Node'
-set label "Node1"  at 37.5,33.5
-set label "Node2"  at 27.5,25.5
-set label "Node3"  at 17.5,25.5
-set label "Node4"  at 36.5,16.5
-set label "Node5"  at 34.5,4.5
-set label "Node6"  at 28.5,11.5
-set label "Node7"  at 19.5,6.5
-set label "Node8"  at 25.5,22.5
-set label "Node9"  at 32.5,14.5
-plot "output_nodes.dat"
+set title 'Graph'
+set label "Node1"  at 38,34
+set label "Node2"  at 28,26
+set label "Node3"  at 18,26
+set label "Node4"  at 37,17
+set label "Node5"  at 35,5
+set label "Node6"  at 29,12
+set label "Node7"  at 20,7
+set label "Node8"  at 26,23
+set label "Node9"  at 33,15
+set xrange [15:41]
+set yrange [1:38]
+plot "output_nodes.dat" every :::0::9 with lp, "" every :::0::0 with points;
 pause -1 " (-> return)"
