@@ -9,6 +9,6 @@ set label "Node7"  at 20,7
 set label "Node8"  at 26,23
 set label "Node9"  at 33,15
 set xrange [15:41]
-set yrange [1:38]
-plot "output_nodes.dat" every :::0::9 with lp, "" every :::0::0 with points;
+set yrange [0.65:38.35]
+plot "output_nodes.dat" every :::0::9 with lp title "Aretes", "" every :::0::0 with points title "Noeuds";
 pause -1 " (-> return)"
