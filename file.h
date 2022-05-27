@@ -10,12 +10,17 @@
 #include <fstream>
 #include <vector>
 #include <iostream>
+#include <string.h>
 #include "FileChecker.h"
 
-using namespace std;
 class File : public FileChecker {
 private:
-	string content;
+	bool check_valid_line(std::string *line, int *count, std::vector<int> *vector_numero, int count_error_number_line);
+	void build_content(std::ifstream *in_file);
+	bool check_existing_nodes(std::vector<std::string> *vect, std::vector<int> *vector_numero);
+	bool update_nodes(std::vector<std::string> *vect, std::vector<int> *vector_numero);
+	bool check_extension(const char *filename);
+	std::string content;
 	void read_content(const char *filename);
 public:
 	File(const char *filename);
@@ -23,7 +28,7 @@ public:
 	virtual ~File();
 	bool check_valid() const;
 	void display() const;
-	string get_content() const;
+	std::string get_content() const;
 };
 
 #endif /* FILE_H_ */

@@ -4,14 +4,13 @@
 #ifndef TRAFFIC_H_
 #define TRAFFIC_H_
 
-using namespace std;
 class Traffic
 {
     private:
-        vector<Node> list_traffic;
+        std::vector<Node> list_traffic;
     public:
-        Traffic(vector<Node> vector_nodes);
-        vector<Node> get_traffic();
+        Traffic(std::vector<Node> vector_nodes);
+        std::vector<Node> get_traffic();
 };
 
 #endif

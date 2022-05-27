@@ -4,14 +4,10 @@
 #include <vector>
 #include <iostream>
 #include "tablemaker.h"
-using namespace std;
-
     
 class view {
 private:
 	TableMaker tabl;
-
-
 public:
 	view(TableMaker tabl);
 	virtual ~view();

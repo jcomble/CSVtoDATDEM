@@ -58,7 +58,7 @@ main-build: CVStoDATDEM
 CVStoDATDEM: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cross G++ Linker'
-	g++g++  -o "CVStoDATDEM" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++  -o "CVStoDATDEM" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

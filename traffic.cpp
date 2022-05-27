@@ -1,14 +1,9 @@
 #include "traffic.h"
-#include "node.h"
-#include <istream>
-#include <vector>
-using namespace std;
 
-
-Traffic::Traffic(vector<Node> vector_nodes) {
+Traffic::Traffic(std::vector<Node> vector_nodes) {
 	this->list_traffic = vector_nodes;
 }
 
-vector<Node> Traffic::get_traffic() {
+std::vector<Node> Traffic::get_traffic() {
 	return this->list_traffic;
 }

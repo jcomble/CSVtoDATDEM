@@ -4,6 +4,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../FileChecker.cpp \
 ../connection.cpp \
 ../file.cpp \
 ../main.cpp \
@@ -13,6 +14,7 @@ CPP_SRCS += \
 ../view.cpp 
 
 CPP_DEPS += \
+./FileChecker.d \
 ./connection.d \
 ./file.d \
 ./main.d \
@@ -22,6 +24,7 @@ CPP_DEPS += \
 ./view.d 
 
 OBJS += \
+./FileChecker.o \
 ./connection.o \
 ./file.o \
 ./main.o \
@@ -35,7 +38,7 @@ OBJS += \
 %.o: ../%.cpp subdir.mk
 	@echo 'Building file: $<'
 	@echo 'Invoking: Cross G++ Compiler'
-	g++g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -43,7 +46,7 @@ OBJS += \
 clean: clean--2e-
 
 clean--2e-:
-	-$(RM) ./connection.d ./connection.o ./file.d ./file.o ./main.d ./main.o ./node.d ./node.o ./tablemaker.d ./tablemaker.o ./traffic.d ./traffic.o ./view.d ./view.o
+	-$(RM) ./FileChecker.d ./FileChecker.o ./connection.d ./connection.o ./file.d ./file.o ./main.d ./main.o ./node.d ./node.o ./tablemaker.d ./tablemaker.o ./traffic.d ./traffic.o ./view.d ./view.o
 
 .PHONY: clean--2e-
 

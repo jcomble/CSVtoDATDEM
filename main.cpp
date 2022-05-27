@@ -8,28 +8,21 @@
 #include "tablemaker.h"
 #include "view.hpp"
 
-using namespace std;
-
-int main(int argc, char * argv[]) {
-	if (argc > 1) {
-		const char *filename = argv[1];
-		File file = File(filename);
-		if (!file.check_valid()) {
-			cout << filename << " is not opened" << endl;
-			return 2;
-		}
-		file.display();
-		TableMaker tables = TableMaker(file.get_content());
-		tables.nodes_display();
-		tables.traffics_display();
-		tables.connections_display();
-		vector<Node> vector_nodes = tables.get_nodes();
-		vector<Connection> vector_connections = tables.get_connections();
-		vector<Traffic> vector_traffics = tables.get_traffics();
-		view view_nodes = view(tables);
-		view_nodes.build();
-		return 0;
+int main(int argc, char *argv[]) {
+	if (argc == 1) {
+		std::cout << "No file in args, (main arg1.csv)";
+		return 1;
 	}
-	cout << "No file in args, (main arg1.csv)";
-	return 1;
+	const char *filename = argv[1];
+	File file = File(filename);
+	if (!file.check_valid()) {
+		std::cout << filename << " is not opened" << std::endl;
+		return 2;
+	}
+	file.display();
+	TableMaker tables = TableMaker(file);
+	tables.display();
+	view view_nodes = view(tables);
+	view_nodes.build();
+	return 0;
 }
