@@ -10,10 +10,10 @@
 #include <stdlib.h>
 #include <fstream>
 #include "node.h"
-#include "traffic.h"
 #include "connection.h"
 #include "FileChecker.h"
 #include "file.h"
+#include "listnodes.h"
 
 #ifndef TABLEMAKER_H_
 #define TABLEMAKER_H_
@@ -21,18 +21,18 @@ class TableMaker : public FileChecker {
 	private:
 		std::string content;
 		std::vector<Node> vector_nodes;
-		std::vector<Traffic> vector_traffics;
+		std::vector<ListNodes> vector_traffics;
 		std::vector<Connection> vector_connections;
 		void vectors_clear();
 		bool check_valid_line(std::string *line,
 							int *count,
 							std::vector<Node> *tmp_vector_nodes,
-							std::vector<Traffic> *tmp_vector_traffics,
+							std::vector<ListNodes> *tmp_vector_traffics,
 							std::vector<Connection> *tmp_vector_connections,
 							int error_line_number);
 		bool update_traffics(std::vector<std::string> *vect,
 							std::vector<Node> *vector_nodes,
-							std::vector<Traffic> *vector_traffics);
+							std::vector<ListNodes> *vector_traffics);
 		bool update_connections(std::vector<std::string> *vect,
 							std::vector<Node> *vector_nodes,
 							std::vector<Connection> *vector_connections);
@@ -52,7 +52,7 @@ class TableMaker : public FileChecker {
 		void display() const;
 		bool check_valid() const;
 		std::vector<Node> get_nodes() const;
-		std::vector<Traffic> get_traffics() const;
+		std::vector<ListNodes> get_traffics() const;
 		std::vector<Connection> get_connections() const;
 
 };

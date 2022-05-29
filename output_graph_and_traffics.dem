@@ -1,0 +1,30 @@
+set title 'Graph'
+set label "Node0"  at 38,34
+set label "Node1"  at 28,26
+set label "Node2"  at 18,26
+set label "Node3"  at 37,17
+set label "Node4"  at 35,5
+set label "Node5"  at 29,12
+set label "Node6"  at 20,7
+set label "Node7"  at 26,23
+set label "Node8"  at 33,15
+set xrange [15:41]
+set yrange [0.65:38.35]
+plot "graph.dat" every :::1::10 with lp title "Aretes", "" every :::0::0 with points title "Noeuds";
+pause -1 " Graph: (Appuyez sur Enter pour continuer) "
+plot "traffic_N0_D0.dat" every :::1::4 with lp title "Aretes", "" every :::0::0 with points title "Noeuds";
+pause -1 " Objectif : Node8 -> Node3, etape : Node8 -> Node0 (Appuyez sur Enter pour continuer) "
+plot "traffic_N0_D1.dat" every :::1::2 with lp title "Aretes", "" every :::0::0 with points title "Noeuds";
+pause -1 " Objectif : Node8 -> Node3, etape : Node0 -> Node3 (Appuyez sur Enter pour continuer) "
+plot "traffic_N1_D0.dat" every :::1::4 with lp title "Aretes", "" every :::0::0 with points title "Noeuds";
+pause -1 " Objectif : Node5 -> Node8, etape : Node5 -> Node0 (Appuyez sur Enter pour continuer) "
+plot "traffic_N1_D1.dat" every :::1::3 with lp title "Aretes", "" every :::0::0 with points title "Noeuds";
+pause -1 " Objectif : Node5 -> Node8, etape : Node0 -> Node6 (Appuyez sur Enter pour continuer) "
+plot "traffic_N1_D2.dat" every :::1::1 with lp title "Aretes", "" every :::0::0 with points title "Noeuds";
+pause -1 " Objectif : Node5 -> Node8, etape : Node6 -> Node7 (Appuyez sur Enter pour continuer) "
+plot "traffic_N1_D3.dat" every :::1::3 with lp title "Aretes", "" every :::0::0 with points title "Noeuds";
+pause -1 " Objectif : Node5 -> Node8, etape : Node7 -> Node8 (Appuyez sur Enter pour continuer) "
+plot "traffic_N2_D0.dat" every :::1::4 with lp title "Aretes", "" every :::0::0 with points title "Noeuds";
+pause -1 " Objectif : Node0 -> Node2, etape : Node0 -> Node5 (Appuyez sur Enter pour continuer) "
+plot "traffic_N2_D1.dat" every :::1::2 with lp title "Aretes", "" every :::0::0 with points title "Noeuds";
+pause -1 " Objectif : Node0 -> Node2, etape : Node5 -> Node2 (Appuyez sur Enter pour continuer) "

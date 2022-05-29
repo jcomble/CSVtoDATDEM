@@ -70,10 +70,10 @@ bool TableMaker::update_nodes(std::vector<std::string> *vect, std::vector<Node> 
 
 bool TableMaker::update_traffics(std::vector<std::string> *vect,
 					std::vector<Node> *vector_nodes,
-					std::vector<Traffic> *vector_traffics){
+					std::vector<ListNodes> *vector_traffics){
 
-	std::vector<Traffic> tmp_vector_traffics = *vector_traffics;
-	std::vector<Node> tmp_list_node_traffic;
+	std::vector<ListNodes> tmp_vector_traffics = *vector_traffics;
+	ListNodes tmp_list_node_traffic;
 	for (const std::string elem : *vect) {
 		int length = elem.length();
 		int tmp_numero = atoi(elem.substr(5, length - 6).c_str());
@@ -81,7 +81,7 @@ bool TableMaker::update_traffics(std::vector<std::string> *vect,
 		for (Node tmp_node : *vector_nodes) {
 			if (tmp_numero == tmp_node.get_id()) {
 				check = true;
-				tmp_list_node_traffic.push_back(tmp_node);
+				tmp_list_node_traffic.addNode(tmp_node);
 				break;
 			}
 		}
@@ -89,8 +89,7 @@ bool TableMaker::update_traffics(std::vector<std::string> *vect,
 			return false;
 		}
 	}
-	Traffic tmp_traffic = Traffic(tmp_list_node_traffic);
-	tmp_vector_traffics.push_back(tmp_traffic);
+	tmp_vector_traffics.push_back(tmp_list_node_traffic);
 	*vector_traffics = tmp_vector_traffics;
 	return true;
 }
@@ -126,7 +125,7 @@ bool TableMaker::update_connections(std::vector<std::string> *vect,
 bool TableMaker::check_valid_line(std::string *line,
 								int *count,
 								std::vector<Node> *tmp_vector_nodes,
-								std::vector<Traffic> *tmp_vector_traffics,
+								std::vector<ListNodes> *tmp_vector_traffics,
 								std::vector<Connection> *tmp_vector_connections,
 								int error_line_number) {
 
@@ -155,7 +154,7 @@ bool TableMaker::check_valid_line(std::string *line,
 
 int TableMaker::build_tables() {
 	std::vector<Node> tmp_vector_nodes;
-	std::vector<Traffic> tmp_vector_traffics;
+	std::vector<ListNodes> tmp_vector_traffics;
 	std::vector<Connection> tmp_vector_connections;
 	std::vector<std::string> tmp_vector_lines = get_lines_vector(this->content);
 	bool check = true;
@@ -190,7 +189,7 @@ std::vector<Node> TableMaker::get_nodes() const {
 	return this->vector_nodes;
 }
 
-std::vector<Traffic> TableMaker::get_traffics() const {
+std::vector<ListNodes> TableMaker::get_traffics() const {
 	return this->vector_traffics;
 }
 
@@ -217,8 +216,8 @@ void TableMaker::traffics_display() const {
 	int length_traffics = this->vector_traffics.size();
 	for (int iterator = 0; iterator < length_traffics; iterator++) {
 		result_display.append("(");
-		Traffic tmp_traffic = this->vector_traffics.at(iterator);
-		std::vector<Node> tmp_nodes = tmp_traffic.get_traffic();
+		ListNodes tmp_traffic = this->vector_traffics.at(iterator);
+		std::vector<Node> tmp_nodes = tmp_traffic.getNodes();
 		int length_nodes = tmp_nodes.size();
 		for (int iterator2 = 0; iterator2 < length_nodes; iterator2++){
 			Node tmp_node = tmp_nodes.at(iterator2);
