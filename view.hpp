@@ -4,8 +4,6 @@
 #include <vector>
 #include <iostream>
 #include "tablemaker.h"
-#include "Trafficschecker.h"
-#include "chemin.h"
 
 class view {
 private:

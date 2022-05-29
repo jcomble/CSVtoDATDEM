@@ -58,11 +58,11 @@ void view::graphdisplay(std::ofstream& out_dem_file) {
 void view::trafficdisplay(std::ofstream& out_dem_file) {
 	std::vector<Node> vector_nodes = this->tabl.get_nodes();
 	std::vector<Connection> vector_connections = this->tabl.get_connections();
-	std::vector<ListNodes> vector_traffics = this->tabl.get_traffics();
+	std::vector<std::vector<Node>> vector_traffics = this->tabl.get_traffics();
 	Graphe graph = Graphe(vector_nodes, vector_connections);
 	int length_vector_traffics = vector_traffics.size();
 	for (int iterator_traffics = 0; iterator_traffics < length_vector_traffics; iterator_traffics++) {
-		ListNodes tmp_traffic = vector_traffics.at(iterator_traffics);
+		std::vector<Node> tmp_traffic = vector_traffics.at(iterator_traffics);
 		int length_tmp_traffic = tmp_traffic.size();
 		for (int iterator_tmp_traffic = 0 ; iterator_tmp_traffic < length_tmp_traffic - 1; iterator_tmp_traffic++) {
 			Node nodeA = tmp_traffic.at(iterator_tmp_traffic);

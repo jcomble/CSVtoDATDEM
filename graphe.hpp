@@ -6,7 +6,7 @@
 #include "connection.h"
 #include "node.h"
 #include <limits.h>
-    
+
 class Graphe 
 {
 private:
