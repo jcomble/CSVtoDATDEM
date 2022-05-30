@@ -56,7 +56,14 @@ void view::graphdisplay(std::ofstream& out_dem_file) {
 	writegraph(out_dem_file, out_dat_file, vector_nodes, vector_connections);
 	out_dat_file.close();
 }
-void view::writetraffics(std::ofstream& out_dem_file, Node nodeA, Node nodeB, std::string filename, std::vector<Node> result_chemin, std::vector<Node> tmp_traffic, int length_tmp_traffic) {
+void view::writetraffics(std::ofstream& out_dem_file,
+		Node nodeA,
+		Node nodeB,
+		std::string filename,
+		std::vector<Node> result_chemin,
+		std::vector<Node> tmp_traffic,
+		int length_tmp_traffic) {
+
 	std::ofstream out_dat_file;
 	out_dat_file.open(filename);
 	if (!out_dat_file.is_open()) {
@@ -75,7 +82,18 @@ void view::writetraffics(std::ofstream& out_dem_file, Node nodeA, Node nodeB, st
 		out_dat_file << nodeC.get_X() << "  " << nodeC.get_Y() << std::endl;
 		out_dat_file << nodeD.get_X() << "  " << nodeD.get_Y() << std::endl << std::endl;
 	}
-	out_dem_file << "plot \"" + filename + "\" every :::1::" << length_deplacement - 1 << " with lp title \"Aretes\", \"\" every :::0::0 with points title \"Noeuds\";" << std::endl;
+	out_dem_file << "set title ' etape : Node"
+			<< std::to_string(nodeA.get_id())
+			<< " -> Node"
+			<< std::to_string(nodeB.get_id())
+			<< "' "
+			<< std::endl;
+	out_dem_file << "plot \""
+			<< filename
+			<< "\" every :::1::"
+			<< length_deplacement - 1
+			<< " with lp title \"Aretes\", \"\" every :::0::0 with points title \"Noeuds\";"
+			<< std::endl;
 	out_dem_file << "pause -1 \" Objectif : Node" + std::to_string(tmp_traffic.at(0).get_id())
 					+ " -> Node" + std::to_string(tmp_traffic.at(length_tmp_traffic - 1).get_id())
 					+ ", etape : Node" + std::to_string(nodeA.get_id())

@@ -12,19 +12,27 @@ set xrange [15:41]
 set yrange [0.65:38.35]
 plot "graph.dat" every :::1::10 with lp title "Aretes", "" every :::0::0 with points title "Noeuds";
 pause -1 " Graph: (Appuyez sur Enter pour continuer) "
+set title ' etape : Node9 -> Node1' 
 plot "traffic_N0_D0.dat" every :::1::4 with lp title "Aretes", "" every :::0::0 with points title "Noeuds";
 pause -1 " Objectif : Node9 -> Node2, etape : Node9 -> Node1 (Appuyez sur Enter pour continuer) "
+set title ' etape : Node1 -> Node2' 
 plot "traffic_N0_D1.dat" every :::1::1 with lp title "Aretes", "" every :::0::0 with points title "Noeuds";
 pause -1 " Objectif : Node9 -> Node2, etape : Node1 -> Node2 (Appuyez sur Enter pour continuer) "
+set title ' etape : Node6 -> Node1' 
 plot "traffic_N1_D0.dat" every :::1::4 with lp title "Aretes", "" every :::0::0 with points title "Noeuds";
 pause -1 " Objectif : Node6 -> Node9, etape : Node6 -> Node1 (Appuyez sur Enter pour continuer) "
+set title ' etape : Node1 -> Node7' 
 plot "traffic_N1_D1.dat" every :::1::3 with lp title "Aretes", "" every :::0::0 with points title "Noeuds";
 pause -1 " Objectif : Node6 -> Node9, etape : Node1 -> Node7 (Appuyez sur Enter pour continuer) "
+set title ' etape : Node7 -> Node8' 
 plot "traffic_N1_D2.dat" every :::1::1 with lp title "Aretes", "" every :::0::0 with points title "Noeuds";
 pause -1 " Objectif : Node6 -> Node9, etape : Node7 -> Node8 (Appuyez sur Enter pour continuer) "
+set title ' etape : Node8 -> Node9' 
 plot "traffic_N1_D3.dat" every :::1::3 with lp title "Aretes", "" every :::0::0 with points title "Noeuds";
 pause -1 " Objectif : Node6 -> Node9, etape : Node8 -> Node9 (Appuyez sur Enter pour continuer) "
+set title ' etape : Node1 -> Node6' 
 plot "traffic_N2_D0.dat" every :::1::4 with lp title "Aretes", "" every :::0::0 with points title "Noeuds";
 pause -1 " Objectif : Node1 -> Node3, etape : Node1 -> Node6 (Appuyez sur Enter pour continuer) "
+set title ' etape : Node6 -> Node3' 
 plot "traffic_N2_D1.dat" every :::1::2 with lp title "Aretes", "" every :::0::0 with points title "Noeuds";
 pause -1 " Objectif : Node1 -> Node3, etape : Node6 -> Node3 (Appuyez sur Enter pour continuer) "
