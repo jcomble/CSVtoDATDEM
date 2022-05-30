@@ -1,2 +1,4 @@
 *.o
 *.run
+.cproject
+Debug
