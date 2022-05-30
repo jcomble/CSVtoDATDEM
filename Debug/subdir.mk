@@ -7,30 +7,30 @@ CPP_SRCS += \
 ../FileChecker.cpp \
 ../connection.cpp \
 ../file.cpp \
+../graphe.cpp \
 ../main.cpp \
 ../node.cpp \
 ../tablemaker.cpp \
-../traffic.cpp \
 ../view.cpp 
 
 CPP_DEPS += \
 ./FileChecker.d \
 ./connection.d \
 ./file.d \
+./graphe.d \
 ./main.d \
 ./node.d \
 ./tablemaker.d \
-./traffic.d \
 ./view.d 
 
 OBJS += \
 ./FileChecker.o \
 ./connection.o \
 ./file.o \
+./graphe.o \
 ./main.o \
 ./node.o \
 ./tablemaker.o \
-./traffic.o \
 ./view.o 
 
 
@@ -46,7 +46,7 @@ OBJS += \
 clean: clean--2e-
 
 clean--2e-:
-	-$(RM) ./FileChecker.d ./FileChecker.o ./connection.d ./connection.o ./file.d ./file.o ./main.d ./main.o ./node.d ./node.o ./tablemaker.d ./tablemaker.o ./traffic.d ./traffic.o ./view.d ./view.o
+	-$(RM) ./FileChecker.d ./FileChecker.o ./connection.d ./connection.o ./file.d ./file.o ./graphe.d ./graphe.o ./main.d ./main.o ./node.d ./node.o ./tablemaker.d ./tablemaker.o ./view.d ./view.o
 
 .PHONY: clean--2e-
 

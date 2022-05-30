@@ -1,5 +1,16 @@
 #include "graphe.hpp"
 
+int Graphe::getindex(std::vector<Node> arg_liste_nodes, Node node) {
+	int length_liste = arg_liste_nodes.size();
+	for (int iterator = 0; iterator < length_liste; iterator++) {
+		Node elem = arg_liste_nodes.at(iterator);
+		if (elem.get_id() == node.get_id()) {
+			return iterator;
+		}
+	}
+	return -1;
+}
+
 Graphe::Graphe(std::vector<Node> arg_liste_nodes,
     std::vector<Connection> arg_liste_connections) {
     this -> liste_nodes = arg_liste_nodes;
@@ -8,8 +19,10 @@ Graphe::Graphe(std::vector<Node> arg_liste_nodes,
     bool mat[dim][dim];
     std::fill(&mat[0][0], &mat[dim][dim], false);
 	for (Connection cox : arg_liste_connections) {
-	    int i = cox.get_node_debut().get_id();
-		int j = cox.get_node_fin().get_id();
+		Node debut = cox.get_node_debut();
+		Node fin = cox.get_node_fin();
+	    int i = getindex(arg_liste_nodes, debut);
+		int j = getindex(arg_liste_nodes, fin);
     	mat[i][j] = true;
     	mat[j][i] = true;
 	}
@@ -45,7 +58,7 @@ std::vector<bool> Graphe::get_mat_vector() {
     return this-> mat_vector;
 }
 
-std::vector<int> Graphe::get_voisin(int id) {
+std::vector<int> Graphe::get_voisin(int node_numero) {
     int dim = this->get_dim();
     std::vector<bool> vector_mat = this->get_mat_vector();
     std::vector<int> voisin ;
@@ -56,8 +69,8 @@ std::vector<int> Graphe::get_voisin(int id) {
             mat[i][j] = vector_mat.at(i * dim + j);
         }
     }
-    for (int i = 0 ; i < dim;i++) {
-        if (mat[id][i] == true) {
+    for (int i = 0; i < dim; i++) {
+        if (mat[node_numero][i] == true) {
             voisin.push_back(i);
         }
     }
@@ -66,11 +79,9 @@ std::vector<int> Graphe::get_voisin(int id) {
 
 void Graphe::chemins(int id_debut, int id_fin) {
 	this->chemins_.clear();
-    int id_d = id_debut;
-    int id_f = id_fin;
     std::vector<int> pile;
-    pile.push_back(id_d);
-    chemins(id_d, id_f, pile);
+    pile.push_back(id_debut);
+    chemins(id_debut, id_fin, pile);
 }
 
 
@@ -82,7 +93,7 @@ void Graphe::chemins(int id_debut, int id_fin, std::vector<int> pile) {
         for (int id_voisin : voisin) {
             bool check = false;
             for (int i = 0 ; i < pile.size();i++) {
-                if (pile.at(i)==id_voisin) {
+                if (pile.at(i) == id_voisin) {
                     check = true;
                 }
             }
@@ -108,16 +119,17 @@ std::vector<int> Graphe::get_chemin_C() {
     return chemin_c;
 }
 
-std::vector<Node> Graphe::get_chemin_C_type_node() {
+std::vector<Node> Graphe::get_chemin_C_type_node(Node debut, Node fin) {
+	chemins(getindex(this->liste_nodes, debut), getindex(this->liste_nodes, fin));
     std::vector<int> chemin_int = this->get_chemin_C();
     std::vector<Node> liste_nodes = this->get_list_nodes();
     std::vector<Node> chemin_nodes;
     for (int i : chemin_int) {
-        for (Node node : liste_nodes) {
-            if (i == node.get_id()) {
-                chemin_nodes.push_back(node);
-            }
-        }
+    	chemin_nodes.push_back(liste_nodes.at(i));
     }
+    for (Node elem : chemin_nodes) {
+    	std::cout << elem.get_id() << " -> ";
+    }
+    std::cout << std::endl;
     return chemin_nodes;
 }

@@ -1,8 +1,5 @@
 #include <iostream>
-#include <vector>
-#include <string>
 #include <stdlib.h>
-#include <fstream>
 #include "node.h"
 #include "file.h"
 #include "tablemaker.h"
@@ -19,9 +16,7 @@ int main(int argc, char *argv[]) {
 		std::cout << filename << " is not opened" << std::endl;
 		return 2;
 	}
-	file.display();
 	TableMaker tables = TableMaker(file);
-	tables.display();
 	view view_nodes = view(tables);
 	view_nodes.build();
 	return 0;

@@ -11,7 +11,7 @@
 #include <iostream>
 
 class FileChecker {
-public:
+protected:
 	FileChecker();
 	virtual ~FileChecker();
 	virtual bool check_valid() const = 0;
