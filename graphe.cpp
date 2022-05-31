@@ -127,9 +127,5 @@ std::vector<Node> Graphe::get_chemin_C_type_node(Node debut, Node fin) {
     for (int i : chemin_int) {
     	chemin_nodes.push_back(liste_nodes.at(i));
     }
-    for (Node elem : chemin_nodes) {
-    	std::cout << elem.get_id() << " -> ";
-    }
-    std::cout << std::endl;
     return chemin_nodes;
 }
