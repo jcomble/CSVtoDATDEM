@@ -2,9 +2,9 @@
 
 ***
 
-Jeu Pacman en Java
+Convertisseur de fichier CSV en graphe GNUplot
 Projet opensource et téléchargeable sur GitHub:
-https://github.com/jcomble/Pacman
+https://github.com/jcomble/CSVtoDATDEM
 
 Concepteurs et développeurs: Jean-Yves Comble, Mohammed Ez-Zraidy, Émilien André
 
