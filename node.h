@@ -6,6 +6,10 @@
  */
 #ifndef NODE_H_
 #define NODE_H_
+
+/**
+ * Classe représentant un noeud par son numéro et ses coordonnées.
+ */
 class Node {
 	private:
         int node_id;

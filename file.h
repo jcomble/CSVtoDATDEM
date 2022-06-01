@@ -14,6 +14,9 @@
 #include <string.h>
 #include "FileChecker.h"
 
+/**
+ * Classe récupérant le contenu (string) d'un fichier et vérifie si le contenu est valide.
+ */
 class File : public FileChecker {
 private:
 	bool check_valid_line(std::string *line, int *count, std::vector<int> *vector_numero, int count_error_number_line);

@@ -7,17 +7,29 @@
 
 #include "file.h"
 
+/**
+ * Constructeur prenant en argument un chemin d'accès pour ouvrir un fichier.
+ */
 File::File(const char *filename) {
 	read_content(filename);
 }
 
+/**
+ * Destructeur.
+ */
 File::~File() {
-
 }
+
+/**
+ * Constructeur par défaut d'argument.
+ */
 File::File() {
 	this->content = "";
 }
 
+/**
+ * Détermine si filename a l'extension .csv.
+ */
 bool File::check_extension(const char *filename){
 	int file_length = strlen(filename);
 	return file_length < 4
@@ -27,6 +39,10 @@ bool File::check_extension(const char *filename){
 			|| filename[file_length - 1] != 'v';
 }
 
+/**
+ * Ajoute à la liste des numéros de noeuds le numéro du nouveau noeud défini.
+ * Renvoie false en cas d'échec.
+ */
 bool File::update_nodes(std::vector<std::string> *vect, std::vector<int> *vector_numero) {
 	std::vector<std::string> tmp_vect = *vect;
 	std::vector<int> tmp_vect_num= *vector_numero;
@@ -45,6 +61,9 @@ bool File::update_nodes(std::vector<std::string> *vect, std::vector<int> *vector
 	return true;
 }
 
+/**
+ * Détermine si le noeud a été défini au préalable dans la vérification des noeuds des traffics et des connections.
+ */
 bool File::check_existing_nodes(std::vector<std::string> *vect, std::vector<int> *vector_numero) {
 	bool check = false;
 	for (const std::string elem : *vect) {
@@ -65,6 +84,10 @@ bool File::check_existing_nodes(std::vector<std::string> *vect, std::vector<int>
 	return check;
 }
 
+/**
+ * Détermine si la ligne est valide et met à jour la liste des numéros de noeuds à
+ * la définition pour la vérification des noeuds des connections et des traffics.
+ */
 bool File::check_valid_line(std::string *line,
 							int *count,
 							std::vector<int> *vector_numero,
@@ -91,7 +114,9 @@ bool File::check_valid_line(std::string *line,
 	*count = tmp_count;
 	return check;
 }
-
+/**
+ * Lit le contenu du fichier ligne par ligne.
+ */
 void File::read_content(const char *filename) {
 	this->content = "";
 	std::ifstream in_file;
@@ -125,14 +150,23 @@ void File::read_content(const char *filename) {
 	in_file.close();
 }
 
+/**
+ * Getter du contenu du fichier.
+ */
 std::string File::get_content() const {
 	return this->content;
 }
 
+/**
+ * Détermine si le fichier est valide.
+ */
 bool File::check_valid() const {
 	return this->content != "";
 }
 
+/**
+ * Affiche le contenu du fichier.
+ */
 void File::display() const {
 	std::cout << "File(\"" << this->content << "\")" << std::endl;
 }

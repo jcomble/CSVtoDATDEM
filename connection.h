@@ -8,6 +8,9 @@
 #ifndef CONNECTION_H_
 #define CONNECTION_H_
 
+/**
+ * Classe représentant une connection entre deux noeuds.
+ */
 class Connection {
 	private:
 		Node node_debut, node_fin;

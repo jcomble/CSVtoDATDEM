@@ -7,12 +7,21 @@
 
 #include "FileChecker.h"
 
+/**
+ * Constructeur par défaut d'argument
+ */
 FileChecker::FileChecker() {
 }
 
+/**
+ * Destructeur
+ */
 FileChecker::~FileChecker() {
 }
 
+/**
+ * Split par ',' une chaine de caractère en un vecteur de string.
+ */
 std::vector<std::string> FileChecker::get_vector(const std::string chaine) {
 	std::vector<std::string> vect;
 	std::string copy_chaine = chaine;
@@ -25,6 +34,9 @@ std::vector<std::string> FileChecker::get_vector(const std::string chaine) {
 	return vect;
 }
 
+/**
+ * Détermine si une chaîne de caractère est une représentation d'un nombre entier naturel.
+ */
 bool FileChecker::isNumber(std::string chaine) {
 	int length = chaine.length();
 	bool check = true;
@@ -40,6 +52,9 @@ bool FileChecker::isNumber(std::string chaine) {
 	return check;
 }
 
+/**
+ * Détermine si une chaîne de caractère est de la forme "Node[0-9][0-9]*"
+ */
 bool FileChecker::is_named_node(std::string chaine) {
 	int length = chaine.length();
 	if (length < 6) {
@@ -51,6 +66,16 @@ bool FileChecker::is_named_node(std::string chaine) {
 	return true;
 }
 
+/**
+ * Détermine quel type de ligne il s'agit:
+ * 1) "Node",,
+ * 2) "Node1",12,34
+ * 3) "traffic",,
+ * 4) "Node1","Node2",...
+ * 5) "connection",,
+ * 6) Aucun des cas précédents
+ * 7) Une ligne vide.
+ */
 short FileChecker::check_vect(std::vector<std::string> vect) {
 	if (vect.size() == 1 && vect.at(0) == "") {
 		return 7;

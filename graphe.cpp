@@ -1,5 +1,9 @@
 #include "graphe.hpp"
 
+/**
+ * Détermine l'index du noeud dans la liste des noeuds.
+ * renvoie -1 si le noeud n'est pas dans la liste.
+ */
 int Graphe::getindex(std::vector<Node> arg_liste_nodes, Node node) {
 	int length_liste = arg_liste_nodes.size();
 	for (int iterator = 0; iterator < length_liste; iterator++) {
@@ -11,6 +15,9 @@ int Graphe::getindex(std::vector<Node> arg_liste_nodes, Node node) {
 	return -1;
 }
 
+/**
+ * Constructeur du graphe représenté par ses noeuds et ses arètes.
+ */
 Graphe::Graphe(std::vector<Node> arg_liste_nodes,
     std::vector<Connection> arg_liste_connections) {
     this -> liste_nodes = arg_liste_nodes;
@@ -35,29 +42,50 @@ Graphe::Graphe(std::vector<Node> arg_liste_nodes,
     this -> mat_vector = vector_matrice;
 }
 
+/**
+ * Destructeur.
+ */
 Graphe::~Graphe(){
 }
 
+/**
+ * Getter de la liste des noeuds.
+ */
 std::vector<Node> Graphe::get_list_nodes() {
     return this-> liste_nodes;
 }
 
+/**
+ * Getter des chemins par les index de la liste de noeuds.
+ */
 std::vector<std::vector<int>> Graphe::get_chemin() {
     return this->chemins_;
 }
 
+/**
+ * Getter de la liste des connections.
+ */
 std::vector<Connection> Graphe::get_liste_connections() {
     return this-> liste_connections;
 }
 
+/**
+ * Getter de la dimension de la matrice d'adjacence.
+ */
 int Graphe::get_dim() {
     return this->dim;
 }
 
+/**
+ * Getter de la matrice d'adjacence linéarisé dans un vecteur.
+ */
 std::vector<bool> Graphe::get_mat_vector() {
     return this-> mat_vector;
 }
 
+/**
+ * Détermine les voisins d'un noeud.
+ */
 std::vector<int> Graphe::get_voisin(int node_numero) {
     int dim = this->get_dim();
     std::vector<bool> vector_mat = this->get_mat_vector();
@@ -77,6 +105,9 @@ std::vector<int> Graphe::get_voisin(int node_numero) {
     return voisin;
 }
 
+/**
+ * Détermine les chemins entre deux noeuds par ses index dans la liste des noeuds.
+ */
 void Graphe::chemins(int id_debut, int id_fin) {
 	this->chemins_.clear();
     std::vector<int> pile;
@@ -84,7 +115,9 @@ void Graphe::chemins(int id_debut, int id_fin) {
     chemins(id_debut, id_fin, pile);
 }
 
-
+/**
+ * Détermine par récurrence les chemins possibles d'un noeud à un autre.
+ */
 void Graphe::chemins(int id_debut, int id_fin, std::vector<int> pile) {
     if (id_debut == id_fin) {
         this->chemins_.push_back(pile);
@@ -106,6 +139,9 @@ void Graphe::chemins(int id_debut, int id_fin, std::vector<int> pile) {
     }
 }
 
+/**
+ * Détermine le plus court chemin stocké.
+ */
 std::vector<int> Graphe::get_chemin_C() {
     std::vector<std::vector<int>> all_path = this->get_chemin();
 	int min_size = INT_MAX;
@@ -119,6 +155,9 @@ std::vector<int> Graphe::get_chemin_C() {
     return chemin_c;
 }
 
+/**
+ * Getter du plus court chemin entre deux noeuds.
+ */
 std::vector<Node> Graphe::get_chemin_C_type_node(Node debut, Node fin) {
 	chemins(getindex(this->liste_nodes, debut), getindex(this->liste_nodes, fin));
     std::vector<int> chemin_int = this->get_chemin_C();

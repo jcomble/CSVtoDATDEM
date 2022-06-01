@@ -8,6 +8,9 @@
 #include "node.h"
 #include <limits.h>
 
+/**
+ * Classe pour déterminer le plus court chemin entre deux noeuds.
+ */
 class Graphe {
 private:
 	int getindex(std::vector<Node> arg_liste_nodes, Node node);

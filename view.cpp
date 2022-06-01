@@ -1,13 +1,25 @@
 #include "view.hpp"
 
+/**
+ * Constructeur prenant un TableMaker en argument.
+ */
 view::view(TableMaker table) {
     this -> tabl = table;
 }
 
+/**
+ * Getter du TableMaker.
+ */
 TableMaker view::get_TableMaker() {
     return this-> tabl;
 }
 
+/**
+ * Ajoute au .dem les ranges forçant au graphe de s'espacer des bordures tel que:
+ * 70% de la longueur et de la largeur de l'affichage soit du graphe.
+ * S'il y a alignement parfait en longueur ou largeur, 3 unités espaceront le graph des bordures
+ * dans ce(s) cas.
+ */
 void view::write_ranges(std::vector<Node> vector_nodes, std::ofstream &out_dat_file, std::ofstream &out_dem_file) {
 	float minX = INT_MAX, minY = INT_MAX, maxX = INT_MIN, maxY = INT_MIN;
 	for (Node tmp_node : vector_nodes) {
@@ -26,6 +38,12 @@ void view::write_ranges(std::vector<Node> vector_nodes, std::ofstream &out_dat_f
 	out_dem_file << "set yrange [" << minrangeY << ":" << maxrangeY <<"]" << std::endl;
 }
 
+/**
+ * Écrit dans le .dem les instructions pour le titre du graph, les étiquettes,
+ * Le placement des points et des arêtes, de la légende et de la pause après affichage.
+ * Écrit dans le .dat les coordonnées des noeuds puis les coordonnées nécessaire
+ * à la création des segments.
+ */
 void view::writegraph(std::ofstream& out_dem_file, std::ofstream& out_dat_file, std::vector<Node> vector_nodes, std::vector<Connection> vector_connections) {
 	out_dem_file << "set title 'Graph'" << std::endl;
 	for (Node tmp_node : vector_nodes) {
@@ -44,6 +62,9 @@ void view::writegraph(std::ofstream& out_dem_file, std::ofstream& out_dat_file, 
 	}
 }
 
+/**
+ * Méthode pour écrire le .dem si le .dat a bien pu être ouvert.
+ */
 void view::graphdisplay(std::ofstream& out_dem_file) {
 	std::vector<Node> vector_nodes = this->tabl.get_nodes();
 	std::vector<Connection> vector_connections = this->tabl.get_connections();
@@ -56,6 +77,13 @@ void view::graphdisplay(std::ofstream& out_dem_file) {
 	writegraph(out_dem_file, out_dat_file, vector_nodes, vector_connections);
 	out_dat_file.close();
 }
+
+/**
+ * Écrit dans le .dem les instructions pour le titre de l'étape dans le traffic,
+ * les étiquettes. Le placement des points et des arêtes, de la légende et de la pause après affichage.
+ * Écrit dans le .dat les coordonnées des noeuds puis les coordonnées nécessaire
+ * à la création des segments.
+ */
 void view::writetraffics(std::ofstream& out_dem_file,
 		Node nodeA,
 		Node nodeB,
@@ -102,6 +130,11 @@ void view::writetraffics(std::ofstream& out_dem_file,
 	out_dat_file.close();
 }
 
+/**
+ * Méthode pour écrire le .dem si le .dat a bien pu être ouvert et pour chaque traffic
+ * et étape dans le traffic, pour générer un .dat correspondant au chemin à parcourir
+ * durant l'étape.
+ */
 void view::trafficdisplay(std::ofstream& out_dem_file) {
 	std::vector<Node> vector_nodes = this->tabl.get_nodes();
 	std::vector<Connection> vector_connections = this->tabl.get_connections();
@@ -121,6 +154,9 @@ void view::trafficdisplay(std::ofstream& out_dem_file) {
 	}
 }
 
+/**
+ * Méthode pour construire les .dem et .dat
+ */
 void view::build() {
 	std::ofstream out_dem_file;
 	out_dem_file.open("output_graph_and_traffics.dem");

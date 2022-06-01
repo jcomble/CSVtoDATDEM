@@ -6,6 +6,9 @@
 #include <limits.h>
 #include "graphe.hpp"
 
+/**
+ * Classe de génération des fichiers pour GNUplot.
+ */
 class view {
 private:
 	TableMaker tabl;

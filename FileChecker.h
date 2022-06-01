@@ -10,6 +10,9 @@
 #include <vector>
 #include <iostream>
 
+/**
+ * Classe mère pour la mise en commun des méthodes de File et TableMaker.
+ */
 class FileChecker {
 protected:
 	FileChecker();

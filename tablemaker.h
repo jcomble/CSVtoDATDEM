@@ -15,6 +15,10 @@
 
 #ifndef TABLEMAKER_H_
 #define TABLEMAKER_H_
+
+/**
+ * Classe génératrice des vecteurs de noeuds, de traffics et de connections.
+ */
 class TableMaker : public FileChecker {
 	private:
 		std::string content;

@@ -7,13 +7,20 @@
 
 #include "tablemaker.h"
 
+/**
+ * Constructeur par string.
+ */
 TableMaker::TableMaker(std::string content) {
 	set_content(content);
 	build_tables();
 }
 
+/**
+ * Constructeur par File.
+ */
 TableMaker::TableMaker(File file) {
-	if (file.get_content().empty() || !file.check_valid()){
+	if (file.get_content().empty() || !file.check_valid()) {
+		this->content = "";
 		std::cout << "Mauvais fichier!" << std::endl;
 		return;
 	}
@@ -21,17 +28,29 @@ TableMaker::TableMaker(File file) {
 	build_tables();
 }
 
+/**
+ * Constructeur à défaut d'arguments.
+ */
 TableMaker::TableMaker() {
 	this->content = "";
 };
 
+/**
+ * Destructeur.
+ */
 TableMaker::~TableMaker(){
 };
 
+/**
+ * Setter du contenu.
+ */
 void TableMaker::set_content(std::string content) {
 	this->content = content;
 }
 
+/**
+ * Split par "\n" le contenu du fichier en un vecteur de string représentant les lignes du fichier.
+ */
 std::vector<std::string> TableMaker::get_lines_vector(std::string chaine) {
 	std::vector<std::string> vect;
 	std::string copy_chaine = chaine;
@@ -44,12 +63,19 @@ std::vector<std::string> TableMaker::get_lines_vector(std::string chaine) {
 	return vect;
 }
 
+/**
+ * Vidage des vecteurs de retour.
+ */
 void TableMaker::vectors_clear() {
 	this->vector_nodes.clear();
 	this->vector_traffics.clear();
 	this->vector_connections.clear();
 }
 
+/**
+ * Met à jour la liste des noeuds à la définition des noeuds.
+ * Renvoie false si le noeud existe déjà.
+ */
 bool TableMaker::update_nodes(std::vector<std::string> *vect, std::vector<Node> *vector_nodes){
 	std::vector<std::string> tmp_vect = *vect;
 	std::vector<Node> tmp_vector_nodes = *vector_nodes;
@@ -68,6 +94,10 @@ bool TableMaker::update_nodes(std::vector<std::string> *vect, std::vector<Node> 
 	return true;
 }
 
+/**
+ * Met à jour la liste des traffics à la définition des traffics.
+ * Renvoie false si un noeud n'a pas été défini au préalable.
+ */
 bool TableMaker::update_traffics(std::vector<std::string> *vect,
 					std::vector<Node> *vector_nodes,
 					std::vector<std::vector<Node>> *vector_traffics){
@@ -94,6 +124,10 @@ bool TableMaker::update_traffics(std::vector<std::string> *vect,
 	return true;
 }
 
+/**
+ * Met à jour la liste des connections à la définition des connections.
+ * Renvoie false si un noeud n'a pas été défini au préalable.
+ */
 bool TableMaker::update_connections(std::vector<std::string> *vect,
 					std::vector<Node> *vector_nodes,
 					std::vector<Connection> *vector_connections){
@@ -122,6 +156,12 @@ bool TableMaker::update_connections(std::vector<std::string> *vect,
 	return true;
 }
 
+/**
+ * Détermine si une ligne est valide et met à jour la liste des noeuds, connections et traffics.
+ * Count==1 : représente le début de la recherche des définitions de noeuds.
+ * Count==2 : représente le début de la recherche des définitions de traffics.
+ * Count==3 : représente le début de la recherche des définitions de connections.
+ */
 bool TableMaker::check_valid_line(std::string *line,
 								int *count,
 								std::vector<Node> *tmp_vector_nodes,
@@ -152,6 +192,10 @@ bool TableMaker::check_valid_line(std::string *line,
 	return check;
 }
 
+/**
+ * Construit les vecteurs de noeuds, de connections et de traffics.
+ * Renvoie 0 en cas d'échec et 1 en cas de réussite.
+ */
 int TableMaker::build_tables() {
 	std::vector<Node> tmp_vector_nodes;
 	std::vector<std::vector<Node>> tmp_vector_traffics;
@@ -177,6 +221,9 @@ int TableMaker::build_tables() {
 	return 1;
 }
 
+/**
+ * S'il s'agit d'une ligne de type 2), renvoie le node associé.
+ */
 Node TableMaker::parse2(std::vector<std::string> vect) {
 	int num_node = atoi(vect[0].substr(5, vect[0].length() - 6).c_str());
 	int node_x = atoi(vect[1].c_str());
@@ -185,18 +232,30 @@ Node TableMaker::parse2(std::vector<std::string> vect) {
 	return node;
 }
 
+/**
+ * Getter de la liste des noeuds.
+ */
 std::vector<Node> TableMaker::get_nodes() const {
 	return this->vector_nodes;
 }
 
+/**
+ * Getter de la liste des traffics.
+ */
 std::vector<std::vector<Node>> TableMaker::get_traffics() const {
 	return this->vector_traffics;
 }
 
+/**
+ * Getter de la liste des noeuds.
+ */
 std::vector<Connection> TableMaker::get_connections() const {
 	return this->vector_connections;
 }
 
+/**
+ * Displayer de la liste des noeuds.
+ */
 void TableMaker::nodes_display() const {
 	std::string result_display = "[";
 	int length = this->vector_nodes.size();
@@ -211,6 +270,9 @@ void TableMaker::nodes_display() const {
 	std::cout << result_display << std::endl;
 }
 
+/**
+ * Displayer de la liste des traffics.
+ */
 void TableMaker::traffics_display() const {
 	std::string result_display = "[";
 	int length_traffics = this->vector_traffics.size();
@@ -234,6 +296,9 @@ void TableMaker::traffics_display() const {
 	std::cout << result_display << std::endl;
 }
 
+/**
+ * Displayer de la liste des connections.
+ */
 void TableMaker::connections_display() const {
 	std::string result_display = "[";
 		int length_connections = this->vector_connections.size();
@@ -250,13 +315,20 @@ void TableMaker::connections_display() const {
 		std::cout << result_display << std::endl;
 }
 
+/**
+ * Méthode pour display les listes.
+ */
 void TableMaker::display() const {
 	nodes_display();
 	connections_display();
 	traffics_display();
 }
 
+/**
+ * Détermine si le contenu est valide.
+ */
 bool TableMaker::check_valid() const {
-	return (this->vector_connections.size() != 0 && this->vector_nodes.size() != 0
-			&& this->vector_traffics.size() != 0);
+	return (this->vector_connections.size() != 0
+			|| this->vector_nodes.size() != 0
+			|| this->vector_traffics.size() != 0);
 }
